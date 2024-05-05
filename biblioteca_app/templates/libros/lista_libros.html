@@ -4,21 +4,38 @@
 
 {% block content %}
   <h1>Lista de Libros</h1>
+  <br>
   <div class="row">
     {% for libro in libros %}
         <div class="col-md-3">
-            <div class="lista-libro-contenedor-item">
+            <div class="lista-libro-contenedor-item" onclick="listaLibroVerDetalles(this, '{% url 'editar_libro' libro.id %}', '{{ libro.titulo }}', '{{ libro.autor }}', '{{ libro.año_publicacion }}', '{{ libro.cantidad_en_stock }}')">
                 <img src="{% static 'img/libro.png' %}">
                 <div class="lista-libro-titulo">{{ libro.titulo }}</div>
                 <div class="lista-libro-autor">{{ libro.autor }} (Publicado en {{ libro.año_publicacion }})</div>
             </div>
         </div>
         {% if forloop.counter|divisibleby:4 and not forloop.last %}
-            </div><div class="row">
+            </div><br><div class="row">
         {% endif %}
     {% empty %}
       <p>No hay libros disponibles.</p>
     {% endfor %}
+  </div>
+
+  <div id="lista-libro-popover" class="lista-libro-popover">
+    <div class="lista-libro-popover-content">
+        <p id="lista-libro-detalles-titulo"></p>
+        <p id="lista-libro-detalles-autor"></p>
+        <p id="lista-libos-detalles-anio-publicacion"></p>
+        <p id="lista-libro-detalles-cantidad-stock"></p>
+
+        <div class="centrar-botones">
+            <button class="btn btn-danger" onclick="closePopover('lista-libro')">Cerrar</button>
+            <a href="" id="lista-libro-detalles-editar" class="btn btn-primary">Editar</a>
+        </div>
+    </div>
+
+    <div class="lista-libro-popover-arrow"></div>
   </div>
 
   {% if is_paginated %}

@@ -8,25 +8,25 @@ class ListaLibrosView(ListView):
     model = Libro
     template_name = 'libros/lista_libros.html'
     context_object_name = 'libros' 
-    paginate_by = 10
+    paginate_by = 8
 
 class DetalleLibroView(DetailView):
     model = Libro
     template_name = 'libros/detalles_libro.html'
 
-class CrearEditarLibroView(UserPassesTestMixin, CreateView, UpdateView):
-    model = Libro
-    fields = ['titulo', 'autor', 'año_publicacion', 'cantidad_en_stock']
-    template_name = 'crear_libro.html'
-    success_url = '/libros/lista_libros.html'
-
-    def test_func(self):
-        return self.request.user.rol == 'administrador'
-
 class CrearLibroView(UserPassesTestMixin, CreateView):
     model = Libro
     form_class = LibroForm
     template_name = 'libros/crear_libro.html'
+    success_url = reverse_lazy('lista_libros')
+
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.rol == 'administrador'
+    
+class EditarLibroView(UserPassesTestMixin, UpdateView):
+    model = Libro
+    form_class = LibroForm
+    template_name = 'libros/editar_libro.html'
     success_url = reverse_lazy('lista_libros')
 
     def test_func(self):

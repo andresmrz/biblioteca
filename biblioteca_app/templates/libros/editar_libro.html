@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Editar Libro</h1>
+  <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="centrar-botones">
+        <a href="{% url 'lista_libros' %}" class="btn btn-danger">Volver</a>
+        <button class="btn btn-success" type="submit">Actualizar Libro</button>
+      </div>
+      
+  </form>
+{% endblock %}
