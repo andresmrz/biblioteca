@@ -7,6 +7,8 @@ from .forms import LibroForm
 class ListaLibrosView(ListView):
     model = Libro
     template_name = 'libros/lista_libros.html'
+    context_object_name = 'libros' 
+    paginate_by = 10
 
 class DetalleLibroView(DetailView):
     model = Libro
