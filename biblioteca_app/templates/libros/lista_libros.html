@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Listado de Libros</h1>
+<div class="row">
+    {% for libro in object_list %}
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ libro.titulo }}</h5>
+                <p class="card-text">Autor: {{ libro.autor }}</p>
+                <p class="card-text">Año de Publicación: {{ libro.año_publicacion }}</p>
+                <p class="card-text">Stock: {{ libro.cantidad_en_stock }}</p>
+                <a href="{% url 'detalle_libro' libro.pk %}" class="btn btn-primary">Ver detalles</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
