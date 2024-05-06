@@ -6,6 +6,15 @@ Este es un proyecto de una biblioteca desarrollado en Django.
 
 La aplicación de la biblioteca tiene como objetivo proporcionar un sistema de gestión para libros y usuarios. Los principales componentes del proyecto son:
 
+## Acceso a aplicación a Heroku
+
+https://gestionbiblioteca-da0269634ede.herokuapp.com/login
+
+## Credenciales de Acceso en Producción
+
+andresmauriciorz96@gmail.com
+1234
+
 ### Modelos
 
 1. **Libro**: Cada libro tiene un título, autor, año de publicación y cantidad en stock.
@@ -80,11 +89,6 @@ python manage.py runserver
 8. Crear un super usuario
 
 python manage.py createsuperuser
-
-## Credenciales de Acceso en Producción
-
-andresmauriciorz96@gmail.com
-1234
 
 # Documentación
 
