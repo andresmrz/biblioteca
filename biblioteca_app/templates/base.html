@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
 
     <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
@@ -26,6 +27,9 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'lista_libros' %}">Libros</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'historial_libro' %}">Historial</a>
         </li>
       </ul> 
     </div>

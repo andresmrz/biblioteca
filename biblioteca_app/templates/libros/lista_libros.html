@@ -8,7 +8,7 @@
   <div class="row">
     {% for libro in libros %}
         <div class="col-md-3">
-            <div class="lista-libro-contenedor-item" onclick="listaLibroVerDetalles(this, '{% url 'editar_libro' libro.id %}', '{{ libro.titulo }}', '{{ libro.autor }}', '{{ libro.año_publicacion }}', '{{ libro.cantidad_en_stock }}')">
+            <div class="lista-libro-contenedor-item" data-id="{{ libro.id }}" onclick="listaLibroVerDetalles(this, '{% url 'editar_libro' libro.id %}', '{% url 'prestar_libro' libro.id %}', '{{ libro.titulo }}', '{{ libro.autor }}', '{{ libro.año_publicacion }}', '{{ libro.cantidad_en_stock }}')">
                 <img src="{% static 'img/libro.png' %}">
                 <div class="lista-libro-titulo">{{ libro.titulo }}</div>
                 <div class="lista-libro-autor">{{ libro.autor }} (Publicado en {{ libro.año_publicacion }})</div>
@@ -30,8 +30,10 @@
         <p id="lista-libro-detalles-cantidad-stock"></p>
 
         <div class="centrar-botones">
-            <button class="btn btn-danger" onclick="closePopover('lista-libro')">Cerrar</button>
-            <a href="" id="lista-libro-detalles-editar" class="btn btn-primary">Editar</a>
+            <button class="btn btn-danger lista-libro-detalles-cerrar" onclick="closePopover('lista-libro')" title="Cerrar"><i class="fa fa-close"></i></button>
+            <button class="btn btn-danger" id="lista-libro-eliminar" data-id="" onclick="eliminarLibro(this)"><i class="fa fa-trash"></i>&nbsp;&nbsp;Eliminar</button>
+            <a href="" id="lista-libro-detalles-prestar" class="btn btn-success"><i class="fa fa-book"></i>&nbsp;&nbsp;Prestar</a>
+            <a href="" id="lista-libro-detalles-editar" class="btn btn-primary"><i class="fa fa-pencil-square"></i>&nbsp;&nbsp;Editar</a>
         </div>
     </div>
 

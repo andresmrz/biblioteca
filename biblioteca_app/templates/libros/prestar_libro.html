@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Prestar libro</h2>
+  <br>
+  <form id="prestarLibroForm" action="javascript:prestarLibro()">
+    {% csrf_token %}
+    <input type="hidden" id="libroId" name="libroId" value="{{ libro.id }}">
+
+    <label for="fecha_devolucion_esperada">Libro:</label>
+    <input class="form-control" type="text" value="{{ libro.titulo }}" readonly><br>
+    <label for="fecha_devolucion_esperada">Fecha de devolución esperada:</label>
+    <input class="form-control" type="date" id="fecha_devolucion_esperada" name="fecha_devolucion_esperada" required><br>
+    <button class="btn btn-primary" type="submit">Prestar</button>
+  </form>
+
+  <script>
+    function prestarLibro() 
+    {
+      const libroId = document.getElementById('libroId').value;
+      const fechaDevolucionEsperada = document.getElementById('fecha_devolucion_esperada').value;
+
+      fetch('/api/libros/prestar/' + libroId + '/', 
+      {
+        method: 'POST',
+        headers: 
+        {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body: JSON.stringify(
+        {
+            libro: libroId,
+            fecha_devolucion_esperada: fechaDevolucionEsperada
+        })
+      })
+      .then(response => 
+      {
+        if (response.ok)
+        {
+          return response.json();
+        }
+        else
+        {
+            throw new Error('Algo salió mal en la API');
+        }
+      })
+      .then(data => {
+        console.log('Préstamo realizado:', data);
+        window.location.href = '{% url 'lista_libros' %}';
+      })
+      .catch(error => 
+      {
+        console.error('Error al realizar el préstamo:', error);
+        alert(error.error || 'Un error ocurrió al realizar el préstamo.');  // Muestra el mensaje de error al usuario
+      });
+    }
+  </script>
+{% endblock %}

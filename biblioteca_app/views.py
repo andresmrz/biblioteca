@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, View
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Libro, Usuario
-from .forms import LibroForm
+from .models import Libro, Usuario, Prestamo
+from .forms import LibroForm, PrestamoForm
 
 class ListaLibrosView(ListView):
     model = Libro
@@ -32,10 +32,13 @@ class EditarLibroView(UserPassesTestMixin, UpdateView):
     def test_func(self):
         return self.request.user.is_authenticated and self.request.user.rol == 'administrador'
 
-class PrestarDevolverLibroView(LoginRequiredMixin, View):
-    model = Usuario
-    fields = ['libros_prestados']
-    template_name = 'prestar_devolver_libro.html'
+class PrestarLibroView(DetailView):
+    model = Libro
+    template_name = 'libros/prestar_libro.html'
+    context_object_name = 'libro'
+
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.rol == 'usuario_regular'
 
 class ListaLibrosPrestadosView(LoginRequiredMixin, ListView):
     model = Usuario
@@ -43,3 +46,12 @@ class ListaLibrosPrestadosView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return self.request.user.libros_prestados.all()
+
+class HistorialLibroView(LoginRequiredMixin, ListView):
+    model = Prestamo
+    template_name = 'libros/historial_libro.html'
+    context_object_name = 'prestamos'
+
+    def get_queryset(self):
+        # Filtrar los préstamos por el usuario actual
+        return Prestamo.objects.filter(usuario=self.request.user).select_related('libro')

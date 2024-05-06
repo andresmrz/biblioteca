@@ -2,9 +2,56 @@
 
 {% block content %}
   <h2>Crear nuevo libro</h2>
-  <form method="post">
+  <form action="javascript:crearLibro()">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">Crear Libro</button>
+      <button class="btn btn-success" type="submit">Crear Libro</button>
   </form>
+
+  <script type="text/javascript">
+    function crearLibro() 
+    {
+      const titulo = document.getElementById('id_titulo').value;
+      const autor = document.getElementById('id_autor').value;
+      const año_publicacion = document.getElementById('id_año_publicacion').value;
+      const cantidad_en_stock = document.getElementById('id_cantidad_en_stock').value;
+
+      //const csrftoken = getCookie('csrftoken');
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+      fetch('/api/libros/crear/', 
+      {
+        method: 'POST',
+        headers: 
+        {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrftoken
+        },
+        body: JSON.stringify(
+        {
+          titulo: titulo,
+          autor: autor,
+          año_publicacion: año_publicacion,
+          cantidad_en_stock: cantidad_en_stock
+        })
+      })
+      .then(response => 
+      {
+        if (response.ok)
+        {
+          return response.json();
+        }
+        else
+        {
+            throw new Error('Algo salió mal en la API');
+        }
+      })
+      .then(data => 
+      {
+        console.log(data);
+        window.location.href = '/libros/';  // Redirigir a '/libros/' después de una creación exitosa
+      })
+      .catch(error => console.error('Error:', error));
+  }
+  </script>
 {% endblock %}

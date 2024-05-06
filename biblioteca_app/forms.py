@@ -1,5 +1,5 @@
 from django import forms
-from .models import Libro
+from .models import Libro, Prestamo
 
 class LibroForm(forms.ModelForm):
     titulo = forms.CharField(label='Título', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -10,3 +10,11 @@ class LibroForm(forms.ModelForm):
     class Meta:
         model = Libro
         fields = ['titulo', 'autor', 'año_publicacion', 'cantidad_en_stock']
+
+class PrestamoForm(forms.ModelForm):
+    class Meta:
+        model = Prestamo
+        fields = ['libro', 'fecha_devolucion_esperada']
+        widgets = {
+            'fecha_devolucion_esperada': forms.DateInput(attrs={'type': 'date'})
+        }

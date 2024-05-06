@@ -64,3 +64,13 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_admin
+    
+class Prestamo(models.Model):
+    usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE, related_name='prestamos')
+    libro = models.ForeignKey('Libro', on_delete=models.CASCADE, related_name='prestamos')
+    fecha_entrega = models.DateField(auto_now_add=True)
+    fecha_devolucion_esperada = models.DateField()
+    fecha_devolucion = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.libro.titulo} prestado a {self.usuario.username}"

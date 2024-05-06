@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Mis Préstamos</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center">Título</th>
+            <th class="text-center">Autor</th>
+            <th class="text-center">Año de Publicación</th>
+            <th class="text-center">Fecha de Préstamo</th>
+            <th class="text-center">Fecha de Devolución</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for prestamo in prestamos %}
+        <tr>
+            <td>{{ prestamo.libro.titulo }}</td>
+            <td>{{ prestamo.libro.autor }}</td>
+            <td class="text-center">{{ prestamo.libro.año_publicacion }}</td>
+            <td>{{ prestamo.fecha_entrega }}</td>
+            <td>{{ prestamo.fecha_devolucion|default:"No devuelto" }}</td>
+            <td class="text-center">
+                {% if prestamo.fecha_devolucion is null %}
+                    <button class="btn btn-primary" onclick="devolverLibro({{ prestamo.id }})"><i class="fa fa-book"></i>&nbsp;&nbsp;Devolver</button>
+                {% else %}
+                    No aplica
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No hay préstamos registrados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
