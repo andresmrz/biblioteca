@@ -1,8 +1,11 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, View
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, View, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Libro, Usuario, Prestamo
 from .forms import LibroForm, PrestamoForm
+
+class indexView(TemplateView):
+    template_name = 'index.html'
 
 class ListaLibrosView(ListView):
     model = Libro

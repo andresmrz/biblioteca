@@ -25,20 +25,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'lista_libros' %}">Libros</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'historial_libro' %}">Historial</a>
-        </li>
-        {% if user.rol == 'administrador' %}
-        <li class="nav-item active">
-            <p><a class="nav-link" href="{% url 'crear_libro' %}">Crear Libro</a></p>
-        </li>
-        {% endif %}
         {% if user.is_authenticated %}
         <li class="nav-item active">
-            <p><a class="nav-link" href="{% url 'logout' %}">Logout</a></p>
+            <p>Bienvenido, {{ user.username }}! | <a class="nav-link" href="{% url 'logout' %}">Logout</a></p>
         </li>
         {% else %}
         <li class="nav-item active">
@@ -48,7 +37,7 @@
       </ul> 
     </div>
   </div>
-</nav>
+</nav>        
 
 <div class="container mt-4">
     {% block content %}{% endblock %}

@@ -1,9 +1,13 @@
 
 from django.urls import path
-from .views import ListaLibrosView, DetalleLibroView, CrearLibroView, EditarLibroView, PrestarLibroView, HistorialLibroView
+from .views import ListaLibrosView, DetalleLibroView, CrearLibroView, EditarLibroView, PrestarLibroView, HistorialLibroView, indexView
 from .api_views import LibroApiList, LibroApiDetail, LibroApiCreate, LibroApiUpdate, LibroApiDelete, PrestamoApi, DevolverPrestamoApi
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    path('', indexView.as_view(), name='index'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('libros/', ListaLibrosView.as_view(), name='lista_libros'),
     path('libros/<int:pk>/', DetalleLibroView.as_view(), name='detalles_libro'),
     path('libros/crear/', CrearLibroView.as_view(), name='crear_libro'),

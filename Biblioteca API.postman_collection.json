@@ -1,0 +1,336 @@
+{
+	"info": {
+		"_postman_id": "61b2a86b-cf6e-4eaa-83cd-12dfd1628e8a",
+		"name": "Biblioteca API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34734241"
+	},
+	"item": [
+		{
+			"name": "Listar Libros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/libros",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"libros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detalles Libros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/libros/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"libros",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Libros",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "andresmauriciorz96@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"uuid": "859e6c1a-c6d5-42da-927d-6f69bc54bb11"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"Relato de un náufrago\",\r\n    \"autor\": \"Gabriel García Márquez\",\r\n    \"año_publicacion\": 1955,\r\n    \"cantidad_en_stock\": 9\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/libros/crear/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"libros",
+						"crear",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar Libros",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "andresmauriciorz96@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"uuid": "c88838b4-b557-4b25-9145-0bba65262ac6"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"Relato de un náufrago\",\r\n    \"autor\": \"Gabriel García Márquez jr\",\r\n    \"año_publicacion\": 1955,\r\n    \"cantidad_en_stock\": 9\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/libros/editar/7/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"libros",
+						"editar",
+						"7",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Libros",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "andresmauriciorz96@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"uuid": "6155a82f-e7c5-4781-8452-66bf6e571ee9"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/libros/eliminar/6/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"libros",
+						"eliminar",
+						"6",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Prestar Libros",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "andresmauriciorz96@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"uuid": "0f7fc58c-2734-43bb-9fbb-07a2ac35d462"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"libro\": 4,\r\n    \"fecha_devolucion_esperada\": \"2024-07-05\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/libros/prestar/4/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"libros",
+						"prestar",
+						"4",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Devolver Libros",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "andresmauriciorz96@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"uuid": "6c5619dd-50c3-4b5f-a723-d6d1ce220f8f"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/libros/devolver/9/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"libros",
+						"devolver",
+						"9",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
