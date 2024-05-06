@@ -88,8 +88,8 @@ DATABASES = {
         'NAME': 'bscuvdjg9ramzlycyqlg',
         'USER': 'u006yb63wrzvxvxg6h8k',
         'PASSWORD': 'MuVHk03wZyAdotxn50pPJLlqkq6kyf',
-        'HOST': 'bscuvdjg9ramzlycyqlg-postgresql.services.clever-cloud.com',  # Un host diferente si tu db no está en local
-        'PORT': '50013',  # El puerto por defecto de PostgreSQL
+        'HOST': 'bscuvdjg9ramzlycyqlg-postgresql.services.clever-cloud.com',
+        'PORT': '50013', 
     }
 }
 

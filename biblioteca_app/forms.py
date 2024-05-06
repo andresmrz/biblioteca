@@ -1,5 +1,6 @@
+from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import Libro, Prestamo
+from .models import Usuario, Libro, Prestamo
 
 class LibroForm(forms.ModelForm):
     titulo = forms.CharField(label='Título', max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -18,3 +19,19 @@ class PrestamoForm(forms.ModelForm):
         widgets = {
             'fecha_devolucion_esperada': forms.DateInput(attrs={'type': 'date'})
         }
+
+class RegisterForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = Usuario
+        fields = ['nombre', 'correo_electronico', 'password1', 'password2']  
+
+    def __init__(self, *args, **kwargs):
+        super(RegisterForm, self).__init__(*args, **kwargs)
+        #del self.fields['username']  # Elimina username si está presente
+    
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.rol = 'usuario regular'  # Establece el rol por defecto como 'usuario regular'
+        if commit:
+            user.save()
+        return user

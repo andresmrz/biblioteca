@@ -92,6 +92,13 @@
     margin: 0 5px;
 }
 
+.alinear-derecha
+{
+    position: fixed;
+    right: 0;
+    margin-right: 5px;
+}
+
 .form-login
 {
     position: relative;

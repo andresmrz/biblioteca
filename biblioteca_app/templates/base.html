@@ -7,42 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Tu Biblioteca{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha256-U3c/OHI6s7A17cS9IwS78hY7e9C/4NQzotwh5f3SAow=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
-
     <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
     <script src="{% static 'js/functions.js' %}"></script>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
-    <a class="navbar-brand" href="#">Tu Biblioteca</a>
+    <a class="navbar-brand" href="{% url 'index' %}">Tu Biblioteca</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'lista_libros' %}">Libros</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="{% url 'historial_libro' %}">Historial</a>
         </li>
         {% if user.rol == 'administrador' %}
-        <li class="nav-item active">
-            <p><a class="nav-link" href="{% url 'crear_libro' %}">Crear Libro</a></p>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'crear_libro' %}">Crear Libro</a>
         </li>
         {% endif %}
-        {% if user.is_authenticated %}
-        <li class="nav-item active">
-            <p><a class="nav-link" href="{% url 'logout' %}">Logout</a></p>
+        <li class="nav-item alinear-derecha">
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
         </li>
         {% else %}
-        <li class="nav-item active">
-            <p><a class="nav-link" href="{% url 'login' %}">Login</a></p>
+        <li class="nav-item alinear-derecha">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
         </li>    
         {% endif %}
       </ul> 
@@ -54,6 +53,5 @@
     {% block content %}{% endblock %}
 </div>
 
-<script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
 </body>
 </html>
