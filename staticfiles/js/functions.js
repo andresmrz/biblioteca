@@ -1,3 +1,13 @@
+/**
+ * Muestra un popover con detalles de un libro específico.
+ * @param {HTMLElement} objeto - Elemento HTML que dispara la función.
+ * @param {string} url_editar - URL para editar el libro.
+ * @param {string} url_prestar - URL para prestar el libro.
+ * @param {string} titulo - Título del libro.
+ * @param {string} autor - Autor del libro.
+ * @param {number} anio_publicacion - Año de publicación del libro.
+ * @param {number} cantidad_stock - Cantidad de libros en stock.
+ */
 
 function listaLibroVerDetalles(objeto, url_editar, url_prestar, titulo, autor, anio_publicacion, cantidad_stock)
 {
@@ -11,15 +21,20 @@ function listaLibroVerDetalles(objeto, url_editar, url_prestar, titulo, autor, a
     popover.style.left = (left - 30) + 'px';
     popover.style.display = 'block';
 
-    $('#lista-libro-detalles-titulo').html('<b>Titulo: </b>' + titulo);
-    $('#lista-libro-detalles-autor').html('<b>Autor: </b>' + autor);
-    $('#lista-libos-detalles-anio-publicacion').html('<b>Año de publicación: </b>' + anio_publicacion);
-    $('#lista-libro-detalles-cantidad-stock').html('<b>Cantidad en stock: </b>' + cantidad_stock);
+    document.getElementById('lista-libro-detalles-titulo').innerHTML = '<b>Titulo: </b>' + titulo;
+    document.getElementById('lista-libro-detalles-autor').innerHTML = '<b>Autor: </b>' + autor;
+    document.getElementById('lista-libos-detalles-anio-publicacion').innerHTML = '<b>Año de publicación: </b>' + anio_publicacion;
+    document.getElementById('lista-libro-detalles-cantidad-stock').innerHTML = '<b>Cantidad en stock: </b>' + cantidad_stock;
 
     document.getElementById('lista-libro-detalles-editar').href = url_editar;
     document.getElementById('lista-libro-detalles-prestar').href = url_prestar;
     document.getElementById('lista-libro-eliminar').dataset.id = objeto.dataset.id;
 }
+
+/**
+ * Elimina un libro de la base de datos.
+ * @param {HTMLElement} objeto - Elemento HTML que representa el libro a eliminar.
+ */
 
 function eliminarLibro(objeto) 
 {
@@ -53,6 +68,11 @@ function eliminarLibro(objeto)
         console.error('Error:', error);
     });
 }
+
+/**
+ * Permite al usuario devolver un libro prestado.
+ * @param {number} id - ID del libro a devolver.
+ */
 
 function devolverLibro(id) 
 {
@@ -92,12 +112,23 @@ function devolverLibro(id)
         alert(error.error || 'Un error ocurrió al realizar la devolución.');  // Muestra el mensaje de error al usuario
     });
 }
-  
+ 
+/**
+ * Cierra un popover especificado.
+ * @param {string} id - Identificador del popover a cerrar.
+ */
+
 function closePopover(id) 
 {
     var popover = document.getElementById(id + '-' + 'popover');
     popover.style.display = 'none';
 }
+
+/**
+ * Obtiene el valor de una cookie especificada.
+ * @param {string} name - Nombre de la cookie deseada.
+ * @returns {string|null} Valor de la cookie si se encuentra, null de lo contrario.
+ */
 
 function getCookie(name) 
 {
