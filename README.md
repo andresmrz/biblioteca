@@ -88,6 +88,11 @@ andresmauriciorz96@gmail.com
 
 # Documentación
 
-El codigo se encuentra documentado en cada uno de sus metodos tanto de las apis como de las vistas. Con cada uno de sus parametros, su funcionamiento y lo que retorna
+El codigo se encuentra documentado en cada uno de sus metodos tanto de las apis como de las vistas. Con cada uno de sus parametros, su funcionamiento y lo que retorna.
+
+Se añadio la libreria de Swagger para documentar las APIS, se pude acceder a ella atravez de:
+
+- https://gestionbiblioteca-da0269634ede.herokuapp.com/swagger/
+- https://gestionbiblioteca-da0269634ede.herokuapp.com/redoc/
 
 Este proyecto fue creado por Andrés Mauricio Rodríguez como prueba tecnica para la empresa USEIT.
