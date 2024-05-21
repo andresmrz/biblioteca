@@ -32,6 +32,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = ['https://*.maoprodev.com']
+
+CORS_ALLOWED_ORIGINS = [
+    'https://maoprodev.com',
+    'https://www.maoprodev.com',
+]
+
+
 
 # Application definition
 
