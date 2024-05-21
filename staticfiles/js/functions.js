@@ -26,8 +26,16 @@ function listaLibroVerDetalles(objeto, url_editar, url_prestar, titulo, autor, a
     document.getElementById('lista-libos-detalles-anio-publicacion').innerHTML = '<b>Año de publicación: </b>' + anio_publicacion;
     document.getElementById('lista-libro-detalles-cantidad-stock').innerHTML = '<b>Cantidad en stock: </b>' + cantidad_stock;
 
-    document.getElementById('lista-libro-detalles-editar').href = url_editar;
-    document.getElementById('lista-libro-detalles-prestar').href = url_prestar;
+    if(document.getElementById('lista-libro-detalles-editar'))
+    {
+        document.getElementById('lista-libro-detalles-editar').href = url_editar;
+    }
+
+    if(document.getElementById('lista-libro-detalles-prestar'))
+    {
+        document.getElementById('lista-libro-detalles-prestar').href = url_prestar;
+    }
+
     document.getElementById('lista-libro-eliminar').dataset.id = objeto.dataset.id;
 }
 
